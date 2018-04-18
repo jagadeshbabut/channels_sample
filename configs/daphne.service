@@ -1,0 +1,14 @@
+[Unit]
+Description=Daphne Websocket Server
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/channels_sample
+ExecStart=/home/ubuntu/.virtualenvs/channels_sample/bin/daphne -u /home/ubuntu/channels_sample/daphne.sock --access-log /home/ubuntu/channels_sample/daphne.log channels_sample.asgi:application
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
