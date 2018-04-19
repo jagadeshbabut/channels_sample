@@ -11,6 +11,30 @@ sudo apt-get install nginx
 
 ### SETUP
 
+##### Django Setup
+
+###### Virtualenvwrapper Setup
+```
+sudo pip3 install virtualenvwrapper
+echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
+echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.bashrc
+echo "export PROJECT_HOME=$HOME/Devel" >> ~/.bashrc
+echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
+source ~/.bashrc
+```
+
+###### Application Setup
+```
+mkvirtualenv --python=/usr/bin/python3 channels_sample
+git clone git@github.com:jagadeshbabut/channels_sample.git / git clone https://github.com/jagadeshbabut/channels_sample.git
+cd channels_sample/
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py collectstatic --no-input
+python manage.py createsuperuser
+```
+
+
 #### NGNIX
 ```
 sudo rm /etc/nginx/sites-enabled/default
@@ -35,30 +59,6 @@ sudo ln -s /etc/uwsgi/apps-available/uwsgi.ini /etc/uwsgi/apps-enabled/uwsgi.ini
 sudo service uwsgi restart
 sudo service uwsgi status
 ```
-
-##### Django Setup
-
-###### Virtualenvwrapper Setup
-```
-sudo pip3 install virtualenvwrapper
-echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
-echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.bashrc
-echo "export PROJECT_HOME=$HOME/Devel" >> ~/.bashrc
-echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
-source ~/.bashrc
-```
-
-Pull the latest code from the repository
-
-###### Application Setup
-```
-mkvirtualenv --python=/usr/bin/python3.5 channels_sample
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py collectstatic --no-input
-python manage.py createsuperuser
-```
-
 
 #### DAPHNE
 ```
