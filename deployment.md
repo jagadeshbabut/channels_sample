@@ -7,6 +7,7 @@ sudo apt-get -y install python3-pip python3-setuptools libpq-dev build-essential
 sudo add-apt-repository ppa:nginx/stable
 sudo apt-get update
 sudo apt-get install nginx
+sudo apt-get install redis-server
 ```
 
 ### SETUP
